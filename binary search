@@ -1,5 +1,5 @@
 // Recursion 
-1) binary seacrh using recursion
+1) binary search using recursion
 public class Main
 {
 	public static void main(String[] args) {
