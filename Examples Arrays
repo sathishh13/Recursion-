@@ -13,3 +13,160 @@ public class Main
 	    return arr[index]<arr[index+1] && sorted(arr,index+1);
 	}
 }
+
+// linear search :finding the target target element in the array using recursion
+
+public class Main
+{
+	public static void main(String[] args) {
+		int[] arr={1,3,5,6,12,15};
+		System.out.println(find(arr,6,0));
+	}
+	static boolean find(int[] arr,int target,int index){
+	    if(index==arr.length){
+	        return false;
+	    }
+	    return arr[index]==target || find(arr,target,index+1);
+	}
+}
+
+//find index of target element
+
+public class Main
+{
+	public static void main(String[] args) {
+		int[] arr={1,3,5,6,12,15};
+		System.out.println(findindex(arr,6,0));
+	}
+	static int findindex(int[] arr,int target,int index){
+	    if(index==arr.length){
+	        return -1;
+	    }
+	    if(arr[index]==target){
+	        return index;
+	    }else{
+	        return findindex(arr,target,index+1);
+	    }
+	}
+}
+
+//find the index from last
+
+public class Main
+{
+	public static void main(String[] args) {
+		int[] arr={1,3,5,6,12,3,15};
+		System.out.println(findindexlast(arr,3,arr.length-1));
+	}
+	static int findindexlast(int[] arr,int target,int index){
+	    if(index==-1){
+	        return -1;
+	    }
+	    if(arr[index]==target){
+	        return index;
+	    }else{
+	        return findindexlast(arr,target,index-1);
+	    }
+	}
+}
+// find all index of target element array
+
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		int[] arr={1,3,5,6,12,3,15};
+		findallindex(arr,3,0);
+		System.out.println(list);
+	}
+   static ArrayList<Integer> list= new ArrayList<Integer>();
+	static void findallindex(int[] arr,int target,int index){
+	    if(index == arr.length){
+	        return ;
+	    }
+	    if(arr[index]==target){
+	        list.add(index);
+	    }
+	    findallindex(arr,target,index+1);
+	}
+}
+
+//return the arrraylist using recursion
+
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		int[] arr={1,3,5,6,12,3,15};
+		ArrayList<Integer> ans = findallindex(arr,3,0,new ArrayList<Integer>() );
+		System.out.println(ans);
+	}
+    static ArrayList<Integer> findallindex(int[] arr, int target,int index,ArrayList<Integer> list){
+        if(index== arr.length){
+            return list;
+        }
+        if(arr[index]==target){
+            list.add(index);
+        }
+        return findallindex(arr,target,index+1,list);
+        
+    }
+}
+
+
+// return the list but dont take in argument
+
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		int[] arr={1,3,5,6,12,3,15};
+		ArrayList<Integer> ans = findallindex2(arr,3,0);
+		System.out.println(ans);
+	}
+    static ArrayList<Integer> findallindex2(int[] arr, int target,int index){
+        ArrayList<Integer> list=new ArrayList<>();
+        if(index== arr.length){
+            return list;
+        }
+        if(arr[index]==target){
+            list.add(index);
+        }
+        ArrayList<Integer>ansfrombelowcalls = findallindex2(arr,target,index+1);
+        list.addAll(ansfrombelowcalls);
+        return list;
+        
+    }
+}
+
+//Rotated binary search
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        int[] arr={5,6,7,8,9,1,2,3};
+        System.out.println(search(arr,5,0,arr.length-1));
+    }
+    static int search(int[] arr, int target, int s, int e){
+        if(s>e){
+            return -1;
+        }
+        int m=s+(e-s)/2;
+        if(target==arr[m]){
+            return m;
+        }
+        if(arr[s] < arr[m]){
+            if(target>=arr[s] && target <=arr[m]){
+                return search(arr,target,s,m-1);
+                
+            }else{
+                return search(arr,target,m+1,e);
+            }
+        }
+        if(target>=arr[m] && target<=arr[e]){
+            return search(arr,target,m+1,e);
+        }
+        return search(arr,target,s,m-1);
+        
+    }
+}
+
